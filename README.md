@@ -3,7 +3,7 @@
 This is my personal portfolio website where I showcase my projects as a developer and embedded systems engineer.
 
 ## Demo
-Check out the site: [arezzon.github.io](https://arezzon.github.io)
+Check out the site: [arezzon.github.io](https://arezzon.github.io/Web-Portfolio)
 
 ## Features
 - Minimal design with dark theme.
