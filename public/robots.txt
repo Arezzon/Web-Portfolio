@@ -1,0 +1,3 @@
+User-agent: *
+
+Sitemap: https://arezzon.github.io/sitemap-index.xml

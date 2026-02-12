@@ -1,0 +1,121 @@
+---
+import { Code } from 'astro:components';
+
+const code = `#include <Arduino.h>
+#include <WiFi.h>
+#include <vector>
+#include <string>
+
+// Hardware Configuration
+#define LED_PIN 2
+#define SENSOR_PIN 34
+#define BAUDRATE 115200
+
+// Developer Profile Structure
+struct Developer {
+    const char* name;
+    std::vector<std::string> skills;
+    std::vector<std::string> interests;
+    const char* github;
+    const char* linkedin;
+};
+
+// Tech Stack Categories
+namespace TechStack {
+    const char* embedded[] = {
+        "ESP32", "Arduino", "C++",
+        "MQTT", "I2C", "SPI",
+        "IoT Sensors", "FreeRTOS"
+    };
+    
+    const char* backend[] = {
+        "Python", "Node.js",
+        "Telegram Bot API", "OpenAI API",
+        "PostgreSQL", "REST APIs"
+    };
+    
+    const char* frontend[] = {
+        "HTML5", "HTMX", "JavaScript",
+        "CSS3", "Responsive Design"
+    };
+}
+
+// Initialize Developer Profile
+Developer ArsenBuldiak = {
+    .name = "Arsen Buldiak",
+    .skills = {
+        "ESP32", "C++", "Python",
+        "Arduino", "IoT", "AI",
+        "Telegram Bots", "Web Dev"
+    },
+    .interests = {
+        "Artificial Intelligence",
+        "Embedded Systems",
+        "Smart Home Automation",
+        "IoT Development",
+        "Open Source"
+    },
+    .github = "https://github.com/Arezzon",
+    .linkedin = "https://linkedin.com/in/arsen-buldiak"
+};
+
+void setup() {
+    Serial.begin(BAUDRATE);
+    pinMode(LED_PIN, OUTPUT);
+    
+    Serial.println("=== System Initialization ===");
+    Serial.print("Developer: ");
+    Serial.println(ArsenBuldiak.name);
+    
+    // Print skills
+    Serial.println("\nLoading Skills...");
+    for(const auto& skill : ArsenBuldiak.skills) {
+        Serial.print("  [OK] ");
+        Serial.println(skill.c_str());
+        delay(100);
+    }
+    
+    Serial.println("\n[READY] All systems operational!");
+}
+
+void loop() {
+    // Blink LED to show activity
+    digitalWrite(LED_PIN, HIGH);
+    delay(1000);
+    digitalWrite(LED_PIN, LOW);
+    delay(1000);
+}
+
+`;
+---
+
+<Code
+    code={code}
+    lang="cpp"
+    wrap={true}
+/>
+
+<style is:global>
+
+    /* Custom styling for code block line numbers */
+    pre.astro-code {
+        @apply bg-transparent !important;
+    }
+
+    pre.astro-code code {
+        @apply block;
+        counter-reset: step;
+        counter-increment: step 0;
+    }
+
+    pre.astro-code code .line {
+        @apply relative;
+    }
+
+    pre.astro-code code .line::before {
+        content: counter(step);
+        counter-increment: step;
+        @apply text-gray-600 pr-2;
+    }
+
+</style>
