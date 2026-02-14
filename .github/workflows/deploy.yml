@@ -21,9 +21,9 @@ jobs:
       
       - name: Install, build, and upload your site
         uses: withastro/action@v2
-        # with:
-          # path: . # розкоментуй, якщо проєкт не в корені
-          # package-manager: npm # примусово, якщо є сумніви
+        with:
+            #   path: . # якщо проєкт не в корені
+              package-manager: npm 
 
   deploy:
     needs: build
