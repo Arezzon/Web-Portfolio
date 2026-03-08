@@ -1,8 +1,9 @@
-# Використовуємо легкий Nginx
 FROM nginx:alpine
 
-# Копіюємо зібраний сайт (папку dist) у стандартну директорію Nginx
-COPY dist/ /usr/share/nginx/html/
+# Створюємо потрібну структуру папок всередині Nginx
+RUN mkdir -p /usr/share/nginx/html/Web-Portfolio
 
-# Відкриваємо 80 порт
+# Копіюємо файли не в корінь, а в підпапку
+COPY dist/ /usr/share/nginx/html/Web-Portfolio/
+
 EXPOSE 80
