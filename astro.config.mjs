@@ -8,7 +8,7 @@ export default defineConfig({
     output: 'static',
     trailingSlash: 'always',
     site: 'https://arezzon.github.io',
-    base: '/Web-Portfolio',
+    base: '/',
 
     // Single page, no prefetch needed
     prefetch: false,
