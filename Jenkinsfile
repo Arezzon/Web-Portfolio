@@ -64,5 +64,19 @@ pipeline {
                 '''
             }
         }
+     
+        stage('Push to DockerHub') {
+        steps {
+        script {
+            // Використовуємо креденшіали 'dockerhub-cred'
+            withCredentials([usernamePassword(credentialsId: 'dockerhub-cred', passwordVariable: 'DOCKER_PASS', usernameVariable: 'DOCKER_USER')]) {
+                sh "echo ${DOCKER_PASS} | docker login -u ${DOCKER_USER} --password-stdin"
+                sh "docker tag web-portfolio-local ${DOCKER_USER}/web-portfolio:latest"
+                sh "docker push ${DOCKER_USER}/web-portfolio:latest"
+            }
+        }
+    }
+}
+
     }
 }
