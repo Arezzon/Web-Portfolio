@@ -7,6 +7,10 @@ pipeline {
         CONTAINER_NAME = "web-portfolio-app"
     }
 
+    tools {
+        nodejs 'node'
+    }
+
     stages {
         stage('Checkout Project') {
             steps {
@@ -22,15 +26,9 @@ pipeline {
             steps {
                 echo "--------- 2. Збірка проєкту (Build) ---------"
                 // Збираємо статичний сайт через Node.js 
-                sh '''
-                    if ! command -v npm > /dev/null 2>&1; then
-                        echo "Встановлюємо Node.js..."
-                        sudo apt update && sudo apt install -y nodejs npm
-                    fi
-                    npm install
-                    npm run build
-                '''
-                
+                sh npm install
+                sh npm run build
+                                
                 echo "--------- Створення локального Docker-образу ---------"
                 // Пакуємо зібраний сайт у Docker-образ 
                 sh "docker build -t ${IMAGE_NAME} ."
