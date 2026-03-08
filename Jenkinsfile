@@ -26,8 +26,8 @@ pipeline {
             steps {
                 echo "--------- 2. Збірка проєкту (Build) ---------"
                 // Збираємо статичний сайт через Node.js 
-                sh npm install
-                sh npm run build
+                sh 'npm install'
+                sh 'npm run build'
                                 
                 echo "--------- Створення локального Docker-образу ---------"
                 // Пакуємо зібраний сайт у Docker-образ 
